@@ -28,14 +28,23 @@ public class Menu {
 
     public static void addGame() {
         String title = getUserInput("Title");
-        String minPlayersStr = getUserInput("Minimum Players");
-        String maxPlayersStr = getUserInput("Maximum Players");
+
+        int minPlayersStr = Integer.parseInt(getUserInput("Minimum Players"));
+        while (minPlayersStr < 1 | minPlayersStr > 15) {
+            System.out.println("Please enter a valid number of minimum players (1-15).");
+            minPlayersStr = Integer.parseInt(getUserInput("Minimum Players"));
+        }
+
+        int maxPlayersStr = Integer.parseInt(getUserInput("Maximum Players"));
+        while (maxPlayersStr < minPlayersStr | maxPlayersStr > 30) {
+            System.out.println("Please enter a valid number of maximum players ("+minPlayersStr+"-30).");
+            maxPlayersStr = Integer.parseInt(getUserInput("Maximum Players"));
+        }
+
         String category = getUserInput("Category (e.g., fantasy, cooperative, family, strategy)");
 
-        int minPlayers = Integer.parseInt(minPlayersStr);
-        int maxPlayers = Integer.parseInt(maxPlayersStr);
 
-        BoardGame game = new BoardGame(title, minPlayers, maxPlayers, category);
+        BoardGame game = new BoardGame(title, minPlayersStr, maxPlayersStr, category);
 
         GameCollection.addGame(game);
         System.out.println("Board game added successfully.");
