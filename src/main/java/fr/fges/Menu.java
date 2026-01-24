@@ -31,23 +31,11 @@ public class Menu {
     }
 
     public static void removeGame() {
-        String title = getUserInput("Title of game to remove");
-
-        // get games from the collection, find the one that matches the title given by the user and remove
-        var games = GameCollection.getGames();
-
-        for (BoardGame game : games) {
-            if (game.title().equals(title)) {
-                GameCollection.removeGame(game);
-                System.out.println("Board game removed successfully.");
-                return;
-            }
-        }
-        System.out.println("No board game found with that title.");
+        RemoveGame.execute();
     }
 
     public static void listAllGames() {
-        GameCollection.viewAllGames();
+        ListGames.execute();
     }
 
     public static void exit() {
