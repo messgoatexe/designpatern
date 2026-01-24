@@ -1,5 +1,7 @@
 package fr.fges;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -10,19 +12,21 @@ public class Main {
 
         String storageFile = args[0];
 
-        // Check file extension
         if (!storageFile.endsWith(".json") && !storageFile.endsWith(".csv")) {
             System.out.println("Error: Storage file must have .json or .csv extension");
             System.exit(1);
         }
 
-        GameCollection.setStorageFile(storageFile);
-        GameCollection.loadFromFile();
+        GameCollection collection = new GameCollection(storageFile);
+        collection.loadFromFile();
+
+        Scanner scanner = new Scanner(System.in);
+        Menu menu = new Menu(collection, scanner);
 
         System.out.println("Using storage file: " + storageFile);
 
         while (true) {
-            Menu.handleMenu();
+            menu.handleMenu();
         }
     }
 }

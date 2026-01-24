@@ -1,30 +1,61 @@
 package fr.fges;
 
-import static fr.fges.Menu.getUserInput;
+import java.util.Scanner;
 
 public class AddGame {
 
-    public static void addGame() {
+    private final GameCollection collection;
+    private final Scanner scanner;
+
+    public AddGame(GameCollection collection, Scanner scanner) {
+        this.collection = collection;
+        this.scanner = scanner;
+    }
+
+    public void execute() {
+        String title = readTitle();
+        int minPlayers = readMinPlayers();
+        int maxPlayers = readMaxPlayers(minPlayers);
+        String category = readCategory();
+
+        BoardGame game = new BoardGame(title, minPlayers, maxPlayers, category);
+        collection.addGame(game);
+        System.out.println("Board game added successfully.");
+    }
+
+    private String readTitle() {
         String title = "";
         while (title.isEmpty()) {
-            title = getUserInput("Title").trim();
+            System.out.print("Title: ");
+            String input = scanner.nextLine();
+
+            if (input == null) {
+                System.out.println("Title cannot be empty. Please enter a valid title.");
+                continue;
+            }
+
+            title = input.trim();
             if (title.isEmpty()) {
                 System.out.println("Title cannot be empty. Please enter a valid title.");
             }
         }
+        return title;
+    }
 
-        int minPlayers = 0;
-        boolean validMin = false;
-        while (!validMin) {
-            String minInput = getUserInput("Minimum Players").trim();
-            if (minInput.isEmpty()) {
+    private int readMinPlayers() {
+        while (true) {
+            System.out.print("Minimum Players: ");
+            String minInput = scanner.nextLine();
+
+            if (minInput == null || minInput.trim().isEmpty()) {
                 System.out.println("Minimum players cannot be empty. Please enter a number (1-15).");
                 continue;
             }
+
             try {
-                minPlayers = Integer.parseInt(minInput);
+                int minPlayers = Integer.parseInt(minInput.trim());
                 if (minPlayers >= 1 && minPlayers <= 15) {
-                    validMin = true;
+                    return minPlayers;
                 } else {
                     System.out.println("Please enter a valid number of minimum players (1-15).");
                 }
@@ -32,19 +63,22 @@ public class AddGame {
                 System.out.println("Please enter a valid number of minimum players (1-15).");
             }
         }
+    }
 
-        int maxPlayers = 0;
-        boolean validMax = false;
-        while (!validMax) {
-            String maxInput = getUserInput("Maximum Players").trim();
-            if (maxInput.isEmpty()) {
+    private int readMaxPlayers(int minPlayers) {
+        while (true) {
+            System.out.print("Maximum Players: ");
+            String maxInput = scanner.nextLine();
+
+            if (maxInput == null || maxInput.trim().isEmpty()) {
                 System.out.println("Maximum players cannot be empty. Please enter a number (" + minPlayers + "-30).");
                 continue;
             }
+
             try {
-                maxPlayers = Integer.parseInt(maxInput);
+                int maxPlayers = Integer.parseInt(maxInput.trim());
                 if (maxPlayers >= minPlayers && maxPlayers <= 30) {
-                    validMax = true;
+                    return maxPlayers;
                 } else {
                     System.out.println("Please enter a valid number of maximum players (" + minPlayers + "-30).");
                 }
@@ -52,18 +86,24 @@ public class AddGame {
                 System.out.println("Please enter a valid number of maximum players (" + minPlayers + "-30).");
             }
         }
+    }
 
+    private String readCategory() {
         String category = "";
         while (category.isEmpty()) {
-            category = getUserInput("Category (e.g., fantasy, cooperative, family, strategy)").trim();
+            System.out.print("Category (e.g., fantasy, cooperative, family, strategy): ");
+            String input = scanner.nextLine();
+
+            if (input == null) {
+                System.out.println("Category cannot be empty. Please enter a valid category.");
+                continue;
+            }
+
+            category = input.trim();
             if (category.isEmpty()) {
                 System.out.println("Category cannot be empty. Please enter a valid category.");
             }
         }
-
-        BoardGame game = new BoardGame(title, minPlayers, maxPlayers, category);
-        GameCollection.addGame(game);
-        System.out.println("Board game added successfully.");
+        return category;
     }
-
 }

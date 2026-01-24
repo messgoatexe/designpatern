@@ -4,16 +4,21 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static String getUserInput(String prompt) {
-        // Scanner is a class in java that helps to read input from various sources like keyboard input, files, etc.
-        Scanner scanner = new Scanner(System.in);
-        // No new line for this one
-        System.out.printf("%s: ", prompt);
-        // Read input for the keyboard
-        return scanner.nextLine();
+    private final GameCollection collection;
+    private final Scanner scanner;
+    private final AddGame addGame;
+    private final RemoveGame removeGame;
+    private final ListGames listGames;
+
+    public Menu(GameCollection collection, Scanner scanner) {
+        this.collection = collection;
+        this.scanner = scanner;
+        this.addGame = new AddGame(collection, scanner);
+        this.removeGame = new RemoveGame(collection, scanner);
+        this.listGames = new ListGames(collection);
     }
 
-    public static void displayMainMenu() {
+    public void displayMainMenu() {
         String menuText = """
                 === Board Game Collection ===
                 1. Add Board Game
@@ -26,35 +31,22 @@ public class Menu {
         System.out.println(menuText);
     }
 
-    public static void addGame() {
-        AddGame.addGame();
-    }
-
-    public static void removeGame() {
-        RemoveGame.execute();
-    }
-
-    public static void listAllGames() {
-        ListGames.execute();
-    }
-
-    public static void exit() {
-        System.out.println("Exiting the application. Goodbye!");
-        System.exit(0);
-    }
-
-    public static void handleMenu() {
+    public void handleMenu() {
         displayMainMenu();
 
-        Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
 
         switch (choice) {
-            case "1" -> addGame();
-            case "2" -> removeGame();
-            case "3" -> listAllGames();
+            case "1" -> addGame.execute();
+            case "2" -> removeGame.execute();
+            case "3" -> listGames.execute();
             case "4" -> exit();
             default -> System.out.println("Invalid choice. Please select a valid option.");
         }
+    }
+
+    private void exit() {
+        System.out.println("Exiting the application. Goodbye!");
+        System.exit(0);
     }
 }

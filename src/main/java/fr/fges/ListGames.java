@@ -2,7 +2,13 @@ package fr.fges;
 
 public class ListGames {
 
-    public static void execute() {
-        GameCollection.viewAllGames();
+    private final GameCollection collection;
+
+    public ListGames(GameCollection collection) {
+        this.collection = collection;
+    }
+
+    public void execute() {
+        collection.viewAllGames();
     }
 }
