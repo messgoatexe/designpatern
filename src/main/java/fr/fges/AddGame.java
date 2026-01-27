@@ -14,11 +14,19 @@ public class AddGame {
 
     public void execute() {
         String title = readTitle();
+        
+        boolean gameExists = collection.getGames().stream()
+                .anyMatch(game -> game.title().equalsIgnoreCase(title));
+        
         int minPlayers = readMinPlayers();
         int maxPlayers = readMaxPlayers(minPlayers);
         String category = readCategory();
 
         BoardGame game = new BoardGame(title, minPlayers, maxPlayers, category);
+        if (gameExists) {
+            System.out.println("Error: A game with title \"" + title + "\" already exists in the collection\n");
+            return;
+        }
         collection.addGame(game);
         System.out.println("Board game added successfully.");
     }
