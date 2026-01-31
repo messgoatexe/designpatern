@@ -1,1 +1,21 @@
-[ ]
+[ {
+  "title" : "Monopoly",
+  "minPlayers" : 2,
+  "maxPlayers" : 8,
+  "category" : "family"
+}, {
+  "title" : "Catan",
+  "minPlayers" : 2,
+  "maxPlayers" : 5,
+  "category" : "family"
+}, {
+  "title" : "risk",
+  "minPlayers" : 2,
+  "maxPlayers" : 8,
+  "category" : "strategy"
+}, {
+  "title" : "la Bonne paye",
+  "minPlayers" : 2,
+  "maxPlayers" : 8,
+  "category" : "family"
+} ]

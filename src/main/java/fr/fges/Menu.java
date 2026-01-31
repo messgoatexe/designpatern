@@ -9,6 +9,7 @@ public class Menu {
     private final AddGame addGame;
     private final RemoveGame removeGame;
     private final ListGames listGames;
+    private final RecommendGame recommendGame;
 
     public Menu(GameCollection collection, Scanner scanner) {
         this.collection = collection;
@@ -16,6 +17,7 @@ public class Menu {
         this.addGame = new AddGame(collection, scanner);
         this.removeGame = new RemoveGame(collection, scanner);
         this.listGames = new ListGames(collection);
+        this.recommendGame =  new RecommendGame(collection);
     }
 
     public void displayMainMenu() {
@@ -25,6 +27,7 @@ public class Menu {
                 2. Remove Board Game
                 3. List All Board Games
                 4. Exit
+                5. Recommend Game
                 Please select an option (1-4):
                 """;
 
@@ -41,6 +44,7 @@ public class Menu {
             case "2" -> removeGame.execute();
             case "3" -> listGames.execute();
             case "4" -> exit();
+            case "5" -> recommendGame.execute();
             default -> System.out.println("Invalid choice. Please select a valid option.");
         }
     }
