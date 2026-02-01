@@ -39,3 +39,6 @@ Travail effectué :
 
 - Modification du fichier test RemoveGameTest en raison d'une erreur de compabilité
     de Mockito.
+
+- Implémentation de la feature "Recommend Game" qui recommande aléatoirement un jeu
+    compatible avec le nombre de joueurs spécifié par l'utilisateur.
