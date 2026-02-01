@@ -1,1 +1,11 @@
-[ ]
+[ {
+  "title" : "test3",
+  "minPlayers" : 1,
+  "maxPlayers" : 9,
+  "category" : "coop"
+}, {
+  "title" : "test4",
+  "minPlayers" : 1,
+  "maxPlayers" : 5,
+  "category" : "family"
+} ]

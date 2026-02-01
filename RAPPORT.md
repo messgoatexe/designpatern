@@ -26,11 +26,16 @@ SPRINT 2
 
 Travail effectué :
 - Modification de la classe AddGame afin d'éviter les doublons dans la collection
-	(jeux avec le même nom)
+	(jeux avec le même nom).
 
 - Modification du fichier test AddGameTest afin de vérifier le cas où l'on voudrait
-	créer un jeu avec le même nom qu'un de ceux qui existent déjà dans la collection
+	créer un jeu avec le même nom qu'un de ceux qui existent déjà dans la collection.
 
-- Ajout du rapport en .md dans le projet
+- Ajout du rapport en .md dans le projet.
 
-- Modification et ajout du diagramme uml lié au projet
+- Modification et ajout du diagramme uml lié au projet.
+
+- Implémentation de la feature "Week-End Summary" avec ses tests.
+
+- Modification du fichier test RemoveGameTest en raison d'une erreur de compabilité
+    de Mockito.
