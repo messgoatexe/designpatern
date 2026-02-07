@@ -42,3 +42,17 @@ Travail effectué :
 
 - Implémentation de la feature "Recommend Game" qui recommande aléatoirement un jeu
     compatible avec le nombre de joueurs spécifié par l'utilisateur.
+
+
+=====================================================================================
+
+SPRINT 3
+
+Travail effectué :
+- Ajout de la feature "Games for X players"
+
+- Ajout du fichier test pour la feature Games for X players
+
+- Modification du menu pour afficher les nouvelles options
+
+- Création de la classe "undo" (pour l'instant vide)
