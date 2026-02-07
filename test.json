@@ -1,0 +1,21 @@
+[ {
+  "title" : "Monopoly",
+  "minPlayers" : 2,
+  "maxPlayers" : 8,
+  "category" : "strategy"
+}, {
+  "title" : "Cluedo",
+  "minPlayers" : 3,
+  "maxPlayers" : 6,
+  "category" : "strategy"
+}, {
+  "title" : "Risk",
+  "minPlayers" : 4,
+  "maxPlayers" : 4,
+  "category" : "strategy"
+}, {
+  "title" : "Loup Garou",
+  "minPlayers" : 6,
+  "maxPlayers" : 20,
+  "category" : "strategy"
+} ]

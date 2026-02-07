@@ -10,6 +10,7 @@ public class Menu {
     private final RemoveGame removeGame;
     private final ListGames listGames;
     private final RecommendGame recommendGame;
+    private final gamesForXPlayers GamesForXPlayers;
     private final WeekendSummary WeekendSummary;
 
     public Menu(GameCollection collection, Scanner scanner) {
@@ -19,6 +20,7 @@ public class Menu {
         this.removeGame = new RemoveGame(collection, scanner);
         this.listGames = new ListGames(collection);
         this.recommendGame = new RecommendGame(collection);
+        this.GamesForXPlayers = new gamesForXPlayers(collection);
         this.WeekendSummary = new WeekendSummary(collection);
     }
 
@@ -31,8 +33,10 @@ public class Menu {
                 3. List All Board Games
                 4. Recommend Game
                 5. View Summary (Weekend Special)
-                6. Exit
-                Please select an option (1-6):
+                6. Undo Last Action
+                7. Games for X Players
+                8. Exit
+                Please select an option (1-8):
                 """;
 
         System.out.print(menuText);
@@ -49,7 +53,9 @@ public class Menu {
             case "3" -> listGames.execute();
             case "4" -> recommendGame.execute();
             case "5" -> WeekendSummary.execute();
-            case "6" -> exit();
+            case "6" -> System.out.println("Undo feature is not implemented yet.");
+            case "7" -> GamesForXPlayers.execute();
+            case "8" -> exit();
             default -> System.out.println("Invalid choice. Please select a valid option.");
         }
     }
