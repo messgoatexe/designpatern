@@ -9,13 +9,20 @@ import java.util.List;
 public class WeekendSummary {
 
     private final GameCollection collection;
+    private LocalDate currentDate; 
 
     public WeekendSummary(GameCollection collection) {
         this.collection = collection;
+        this.currentDate = null;
+    }
+    
+    public WeekendSummary(GameCollection collection, LocalDate date) {
+        this.collection = collection;
+        this.currentDate = date;
     }
 
     public void execute() {
-        LocalDate today = LocalDate.now();
+        LocalDate today = (currentDate != null) ? currentDate : LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
 
         if (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY) {

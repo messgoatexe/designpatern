@@ -6,10 +6,12 @@ public class AddGame {
 
     private final GameCollection collection;
     private final Scanner scanner;
+    private final undo.UndoManager undoManager;
 
-    public AddGame(GameCollection collection, Scanner scanner) {
+    public AddGame(GameCollection collection, Scanner scanner, undo.UndoManager undoManager) {
         this.collection = collection;
         this.scanner = scanner;
+        this.undoManager = undoManager;
     }
 
     public void execute() {
@@ -18,16 +20,21 @@ public class AddGame {
         boolean gameExists = collection.getGames().stream()
                 .anyMatch(game -> game.title().equalsIgnoreCase(title));
         
+        if (gameExists) {
+            System.out.println("Error: A game with title \"" + title + "\" already exists in the collection\n");
+            return;
+        }
+        
         int minPlayers = readMinPlayers();
         int maxPlayers = readMaxPlayers(minPlayers);
         String category = readCategory();
 
         BoardGame game = new BoardGame(title, minPlayers, maxPlayers, category);
-        if (gameExists) {
-            System.out.println("Error: A game with title \"" + title + "\" already exists in the collection\n");
-            return;
-        }
         collection.addGame(game);
+        
+        // Enregistrer l'action pour l'undo
+        undoManager.recordAction(new undo.UndoableAction(undo.UndoableAction.ActionType.ADD, game));
+        
         System.out.println("Board game added successfully.");
     }
 

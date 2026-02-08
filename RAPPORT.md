@@ -49,10 +49,16 @@ Travail effectué :
 SPRINT 3
 
 Travail effectué :
-- Ajout de la feature "Games for X players"
+- Ajout de la feature "Games for X players".
 
-- Ajout du fichier test pour la feature Games for X players
+- Ajout du fichier test pour la feature Games for X players.
 
-- Modification du menu pour afficher les nouvelles options
+- Modification du menu pour afficher les nouvelles options.
 
-- Création de la classe "undo" (pour l'instant vide)
+- Ajout de la feature "Undo" qui doit seulement fonctionner pour Add ou Remove Game.
+
+- Ajout du fichier test pour "Undo".
+
+- Modifications des tests de Add et Remove afin de concorder avec la nouvelle feature Undo.
+
+- Modification et fix de la feature "WeekendSummary" et de son test.

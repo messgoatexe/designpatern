@@ -6,10 +6,12 @@ public class RemoveGame {
 
     private final GameCollection collection;
     private final Scanner scanner;
+    private final undo.UndoManager undoManager;
 
-    public RemoveGame(GameCollection collection, Scanner scanner) {
+    public RemoveGame(GameCollection collection, Scanner scanner, undo.UndoManager undoManager) {
         this.collection = collection;
         this.scanner = scanner;
+        this.undoManager = undoManager;
     }
 
     public void execute() {
@@ -36,6 +38,9 @@ public class RemoveGame {
 
         for (BoardGame game : games) {
             if (game.title().equals(title)) {
+                // Enregistrer l'action AVANT de supprimer
+                undoManager.recordAction(new undo.UndoableAction(undo.UndoableAction.ActionType.REMOVE, game));
+                
                 collection.removeGame(game);
                 System.out.println("Board game removed successfully.");
                 return;
