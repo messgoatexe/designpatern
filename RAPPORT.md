@@ -62,3 +62,7 @@ Travail effectué :
 - Modifications des tests de Add et Remove afin de concorder avec la nouvelle feature Undo.
 
 - Modification et fix de la feature "WeekendSummary" et de son test.
+
+- Reorganisation de GameCollection : Séparation en classes spécialisées (Repository, Presenter, Factory).
+
+- Amélioration des tests
