@@ -1,0 +1,98 @@
+---
+title: Diagramme de Packages - Système de Tournoi de Jeux
+---
+classDiagram
+    namespace UI {
+        class GameSelectionUI {
+            +displayAvailableGames()
+            +selectGame()
+            +selectNumberOfPlayers()
+        }
+        class PlayerConfigUI {
+            +enterPlayerNames()
+        }
+        class TournamentConfigUI {
+            +selectTournamentType()
+        }
+        class MatchDisplayUI {
+            +displayMatch()
+            +displayWinner()
+        }
+        class TournamentResultUI {
+            +displayTournamentWinner()
+        }
+    }
+
+    namespace GameManagement {
+        class GameCatalog {
+            +listTwoPlayerGames()
+            +getGame(gameId)
+        }
+        class Game {
+            -name: string
+            -minPlayers: int
+            -maxPlayers: int
+            +isAvailable(): bool
+        }
+    }
+
+    namespace PlayerManagement {
+        class Player {
+            -name: string
+            -points: int
+            -victories: int
+            +addPoints(points)
+            +addVictory()
+        }
+        class PlayerRegistry {
+            +registerPlayers(names)
+            +getPlayers()
+        }
+    }
+
+    namespace TournamentManagement {
+        class Tournament {
+            -type: TournamentType
+            -players: Player[]
+            -matches: Match[]
+            +start()
+            +calculateWinner()
+        }
+        class TournamentType {
+            <<enumeration>>
+            CHAMPIONSHIP
+            KING_OF_THE_HILL
+        }
+        class Match {
+            -player1: Player
+            -player2: Player
+            -winner: Player
+            +play()
+            +getWinner()
+        }
+    }
+
+    namespace RankingManagement {
+        class RankingSystem {
+            +calculateRanking(players)
+            +sortByPoints()
+            +sortByVictories()
+            +sortAlphabetically()
+        }
+    }
+
+    %% Relations UI
+    GameSelectionUI --> GameCatalog
+    PlayerConfigUI --> PlayerRegistry
+    TournamentConfigUI --> Tournament
+    MatchDisplayUI --> Match
+    TournamentResultUI --> RankingSystem
+
+    %% Relations entre packages
+    GameCatalog "1" -- "*" Game
+    PlayerRegistry "1" -- "*" Player
+    Tournament "1" -- "*" Match
+    Tournament "1" -- "1" TournamentType
+    Tournament "1" -- "*" Player
+    Match "1" -- "2" Player
+    RankingSystem --> Player
