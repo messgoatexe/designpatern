@@ -4,13 +4,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Usage: java -jar boardgamecollection.jar <storage-file>");
-            System.out.println("Storage file must be .json or .csv");
-            System.exit(1);
+        String storageFile = "data.json"; // Fichier par défaut
+        
+        if (args.length > 0) {
+            storageFile = args[0];
         }
-
-        String storageFile = args[0];
 
         if (!storageFile.endsWith(".json") && !storageFile.endsWith(".csv")) {
             System.out.println("Error: Storage file must have .json or .csv extension");

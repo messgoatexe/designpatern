@@ -66,3 +66,11 @@ Travail effectué :
 - Reorganisation de GameCollection : Séparation en classes spécialisées (Repository, Presenter, Factory).
 
 - Amélioration des tests
+
+=====================================================================================
+
+SPRINT 4
+
+Travail effectué :
+- Implémentation de la feature "Tournament Mode" : création Player, filtrage jeux 2 joueurs, sélection jeu, saisie participants (3-8) et noms avec validations.
+- Intégration au menu principal (option 7-8) et modification Main.java pour utiliser data.json par défaut.

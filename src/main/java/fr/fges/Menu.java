@@ -16,6 +16,7 @@ public class Menu {
     private final gamesForXPlayers GamesForXPlayers;
     private final WeekendSummary WeekendSummary;
     private final undo.UndoService undoService;
+    private final TournamentMode tournamentMode;
 
     public Menu(GameCollection collection, Scanner scanner) {
         this.collection = collection;
@@ -28,6 +29,7 @@ public class Menu {
         this.GamesForXPlayers = new gamesForXPlayers(collection);
         this.WeekendSummary = new WeekendSummary(collection);
         this.undoService = new undo.UndoService(collection, undoManager);
+        this.tournamentMode = new TournamentMode(collection, scanner);
     }
 
     public void displayMainMenu() {
@@ -43,8 +45,9 @@ public class Menu {
                 5. View Summary (Weekend Special)
                 6. Undo Last Action
                 7. Games for X Players 
-                8. Exit
-                Please select an option (1-8):
+                8. Tournament Mode
+                9. Exit
+                Please select an option (1-9):
                 """;
         } else {
             menuText = """
@@ -56,8 +59,9 @@ public class Menu {
                     4. Recommend Game
                     5. Undo Last Action
                     6. Games for X Players
-                    7. Exit
-                    Please select an option (1-7):
+                    7. Tournament Mode
+                    8. Exit
+                    Please select an option (1-8):
                     """;
         }
         System.out.print(menuText);
@@ -82,7 +86,8 @@ public class Menu {
                     }
                 }
                 case "6" -> GamesForXPlayers.execute();
-                case "7" -> exit();
+                case "7" -> tournamentMode.execute();
+                case "8" -> exit();
                 default -> System.out.println("Invalid choice. Please select a valid option.");
             }
             return;
@@ -102,7 +107,8 @@ public class Menu {
                 }
             }
             case "7" -> GamesForXPlayers.execute();
-            case "8" -> exit();
+            case "8" -> tournamentMode.execute();
+            case "9" -> exit();
             default -> System.out.println("Invalid choice. Please select a valid option.");
         }
     }
