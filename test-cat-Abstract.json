@@ -1,0 +1,6 @@
+[ {
+  "title" : "Game",
+  "minPlayers" : 2,
+  "maxPlayers" : 4,
+  "category" : "Abstract"
+} ]

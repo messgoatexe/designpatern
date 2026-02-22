@@ -74,3 +74,4 @@ SPRINT 4
 Travail effectué :
 - Implémentation de la feature "Tournament Mode" : création Player, filtrage jeux 2 joueurs, sélection jeu, saisie participants (3-8) et noms avec validations.
 - Intégration au menu principal (option 7-8) et modification Main.java pour utiliser data.json par défaut.
+- Ajout de tests pour "Tournament Mode" : validation nombre joueurs, noms uniques, et sélection jeu.
